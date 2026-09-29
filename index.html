@@ -1,9 +1,10 @@
+```html
 <!DOCTYPE html>
 <html lang="km">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Polynomial Division Master - ប្រមាណវិធីចែកពហុធា</title>
+  <title>Polynomial Division Master - ប្រមាណវិធីចែកពហុធា | រៀបរៀងដោយ ចាន់ សុខហេង</title>
   <!-- Google Fonts: Kantumruy Pro & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,6 +53,8 @@
       min-height: 100vh;
       line-height: 1.6;
       overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
     /* Math typesetting */
@@ -66,7 +69,7 @@
     .math-frac .num { border-bottom: 1.5px solid var(--text-muted); padding-bottom: 2px; }
     .math-frac .den { padding-top: 2px; }
 
-    /* Visual Long Division Bracket Layout (Section 25) */
+    /* Visual Long Division Bracket Layout */
     .bracket-container {
       background: var(--bg-inner);
       border: 1.5px solid var(--border);
@@ -122,8 +125,10 @@
     /* Main Container */
     .container {
       max-width: 1080px;
+      width: 100%;
       margin: 0 auto;
-      padding: 16px 20px 60px;
+      padding: 16px 20px 40px;
+      flex: 1;
     }
 
     /* Sticky Navigation Header */
@@ -131,7 +136,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(19, 29, 49, 0.85);
+      background: rgba(19, 29, 49, 0.88);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(255, 255, 255, 0.09);
@@ -142,6 +147,8 @@
       top: 12px;
       z-index: 100;
       box-shadow: var(--shadow);
+      flex-wrap: wrap;
+      gap: 12px;
     }
     .brand {
       display: flex;
@@ -172,10 +179,24 @@
       font-weight: 500;
     }
 
+    .header-author-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(99, 102, 241, 0.18);
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      color: #a5b4fc;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
     .header-stats {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
+      flex-wrap: wrap;
     }
     .stat-badge {
       display: flex;
@@ -210,6 +231,25 @@
       transform: translateY(-2px);
     }
 
+    /* Author Attribution Banner on each Screen */
+    .screen-author-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(10, 17, 32, 0.6);
+      border: 1px dashed rgba(99, 102, 241, 0.35);
+      border-radius: var(--radius-md);
+      padding: 8px 16px;
+      margin-bottom: 18px;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+    .screen-author-bar .author-name {
+      color: #38bdf8;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
     /* Screen Views */
     .view-screen { display: none; animation: fadeIn 0.3s ease-out; }
     .view-screen.active { display: block; }
@@ -236,7 +276,7 @@
       border: 1px solid rgba(99, 102, 241, 0.35);
       position: relative;
       overflow: hidden;
-      padding: 34px 28px;
+      padding: 32px 28px;
     }
     .hero-card::after {
       content: '🧮';
@@ -306,6 +346,22 @@
       color: white;
       box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
     }
+    .btn-success:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+    }
+    .btn-download {
+      background: linear-gradient(135deg, #0ea5e9, #0284c7);
+      color: white;
+      box-shadow: 0 4px 16px rgba(14, 165, 233, 0.4);
+      font-size: 1rem;
+      padding: 14px 28px;
+    }
+    .btn-download:hover {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(14, 165, 233, 0.55);
+    }
     .btn-outline {
       background: transparent;
       border: 1.5px solid rgba(255, 255, 255, 0.2);
@@ -319,6 +375,42 @@
     .btn-secondary:hover { background: #334155; }
     .btn-sm { padding: 6px 14px; font-size: 0.85rem; border-radius: var(--radius-sm); }
     .btn-lg { padding: 14px 32px; font-size: 1.1rem; }
+
+    /* Forms */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-group label {
+      font-size: 0.9rem;
+      color: #93c5fd;
+      font-weight: 600;
+    }
+    .form-control {
+      background: var(--bg-inner);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      font-family: var(--font-km);
+      font-size: 1rem;
+      color: #f1f5f9;
+      outline: none;
+      transition: var(--transition);
+    }
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 14px rgba(99, 102, 241, 0.35);
+    }
+    select.form-control {
+      cursor: pointer;
+    }
 
     /* Home Navigation Grid */
     .menu-grid {
@@ -467,7 +559,7 @@
       margin-bottom: 14px;
     }
 
-    /* Long Division Dedicated Screen (Section 25) */
+    /* Long Division Dedicated Screen */
     .screen-25-box {
       background: var(--bg-inner);
       border: 1.5px solid var(--border);
@@ -540,7 +632,7 @@
       flex-shrink: 0;
     }
 
-    /* Arrange Steps Interface (Type E) */
+    /* Arrange Steps Interface */
     .arrange-list {
       display: flex;
       flex-direction: column;
@@ -628,7 +720,7 @@
       border: 1.5px solid #ef4444;
     }
 
-    /* Verification Card */
+    /* Verification Box */
     .verif-box {
       background: #060b14;
       border-left: 4px solid #10b981;
@@ -639,13 +731,118 @@
       font-family: var(--font-math);
     }
 
+    /* Result Certificate Card in Results Screen */
+    .result-certificate {
+      background: linear-gradient(145deg, #131d31 0%, #0c1424 100%);
+      border: 2px solid #3b82f6;
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      margin-bottom: 24px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+    .cert-watermark {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      font-size: 110px;
+      opacity: 0.05;
+      pointer-events: none;
+    }
+    .cert-student-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      background: var(--bg-inner);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      margin: 18px 0;
+      text-align: left;
+    }
+    .cert-field {
+      display: flex;
+      flex-direction: column;
+    }
+    .cert-field-lbl {
+      font-size: 0.78rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .cert-field-val {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-top: 2px;
+    }
+
+    .cert-author-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      color: #cbd5e1;
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      font-size: 0.95rem;
+      margin-top: 14px;
+    }
+
+    /* Score Ring */
+    .score-ring {
+      width: 140px;
+      height: 140px;
+      border-radius: var(--radius-full);
+      background: conic-gradient(var(--primary) 0%, #1e293b 0%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .score-ring-inner {
+      width: 114px;
+      height: 114px;
+      border-radius: var(--radius-full);
+      background: var(--bg-card);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Global App Footer */
+    footer.app-footer {
+      background: rgba(10, 17, 32, 0.92);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 20px 24px;
+      text-align: center;
+      margin-top: auto;
+      backdrop-filter: blur(8px);
+    }
+    .footer-content {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+    }
+    .footer-author {
+      font-size: 0.95rem;
+      color: #38bdf8;
+      font-weight: 600;
+    }
+
     /* Modals */
     .modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(4px);
+      background: rgba(0, 0, 0, 0.82);
+      backdrop-filter: blur(5px);
       z-index: 200;
       align-items: center;
       justify-content: center;
@@ -681,28 +878,6 @@
     }
     .modal-close:hover { color: #fff; }
 
-    /* Results */
-    .score-ring {
-      width: 140px;
-      height: 140px;
-      border-radius: var(--radius-full);
-      background: conic-gradient(var(--primary) 0%, #1e293b 0%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-    }
-    .score-ring-inner {
-      width: 114px;
-      height: 114px;
-      border-radius: var(--radius-full);
-      background: var(--bg-card);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
     /* Canvas Confetti */
     #confettiCanvas {
       position: fixed;
@@ -715,12 +890,13 @@
 
     /* Responsive */
     @media (max-width: 640px) {
-      .container { padding: 12px 12px 40px; }
+      .container { padding: 12px 12px 30px; }
       header.app-header { padding: 10px 14px; }
       .brand-title p { display: none; }
       .hero-card { padding: 22px 18px; }
       .hero-title { font-size: 1.4rem; }
       .keypad { grid-template-columns: repeat(4, 1fr); }
+      .cert-student-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -731,7 +907,7 @@
 
   <div class="container">
     
-    <!-- Top Sticky Header -->
+    <!-- Top Sticky Header (រៀបរៀងដោយ ចាន់ សុខហេង) -->
     <header class="app-header">
       <div class="brand" onclick="navTo('home')">
         <div class="brand-icon">🧮</div>
@@ -740,19 +916,88 @@
           <p>ប្រមាណវិធីចែកពហុធា</p>
         </div>
       </div>
+      
+      <div class="header-author-badge">
+        ✍️ រៀបរៀងដោយ ចាន់ សុខហេង
+      </div>
+
       <div class="header-stats">
         <div class="stat-badge xp">⭐ <span id="topXP">0</span> XP</div>
         <div class="stat-badge streak">🔥 <span id="topStreak">0</span></div>
         <button class="icon-btn" id="audioToggle" onclick="toggleAudio()" title="សំឡេង">🔊</button>
-        <button class="icon-btn" onclick="openProfile()" title="ព័ត៌មានសិស្ស">👨‍🎓</button>
+        <button class="icon-btn" onclick="navTo('student-info')" title="ព័ត៌មានសិស្ស">👨🎓</button>
       </div>
     </header>
 
-    <!-- VIEW 1: HOME SCREEN -->
-    <main id="view-home" class="view-screen active">
+    <!-- VIEW 1: FIRST SCREEN - STUDENT INFORMATION FORM (ផ្ទាំងទី១ បំពេញព័ត៌មានសិស្ស) -->
+    <main id="view-student-info" class="view-screen active">
+      <div class="screen-author-bar">
+        <span>📖 កម្មវិធីសិក្សាគណិតវិទ្យា៖ <strong>ប្រមាណវិធីចែកពហុធា</strong></span>
+        <span>✍️ រៀបរៀងដោយ <span class="author-name">ចាន់ សុខហេង</span></span>
+      </div>
+
+      <div class="card hero-card" style="margin-bottom:20px;">
+        <h2 class="hero-title">📝 ផ្ទាំងព័ត៌មានសិស្សានុសិស្ស</h2>
+        <p class="hero-desc">សូមបំពេញព័ត៌មានផ្ទាល់ខ្លួនរបស់ប្អូនៗសិស្សានុសិស្ស មុនពេលចាប់ផ្តើមរៀន និងធ្វើតេស្តប្រមាណវិធីចែកពហុធា ដើម្បីទទួលបានប័ណ្ណបញ្ជាក់លទ្ធផលសិក្សាផ្លូវការ។</p>
+        
+        <form id="studentEnrollForm" onsubmit="event.preventDefault(); saveStudentProfileAndProceed();">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>👤 គោត្តនាម និងនាម (ឈ្មោះសិស្ស) *</label>
+              <input type="text" id="initName" class="form-control" placeholder="ឧទាហរណ៍៖ សុខ វិសាល" required>
+            </div>
+            
+            <div class="form-group">
+              <label>⚧ ភេទ *</label>
+              <select id="initGender" class="form-control" required>
+                <option value="ប្រុស">ប្រុស (Male)</option>
+                <option value="ស្រី">ស្រី (Female)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>🏫 ថ្នាក់រៀន *</label>
+              <input type="text" id="initGrade" class="form-control" placeholder="ឧទាហរណ៍៖ ថ្នាក់ទី១០ ក" required>
+            </div>
+
+            <div class="form-group">
+              <label>🔢 លេខរៀងសិស្ស / អត្តលេខ *</label>
+              <input type="text" id="initId" class="form-control" placeholder="ឧទាហរណ៍៖ 12" required>
+            </div>
+
+            <div class="form-group">
+              <label>🏛️ គ្រឹះស្ថានសិក្សា / សាលារៀន</label>
+              <input type="text" id="initSchool" class="form-control" placeholder="ឧទាហរណ៍៖ វិទ្យាល័យ ហ៊ុន សែន ...">
+            </div>
+
+            <div class="form-group">
+              <label>📅 កាលបរិច្ឆេទ</label>
+              <input type="date" id="initDate" class="form-control" required>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; border-top:1px solid rgba(255,255,255,0.08); padding-top:20px;">
+            <div style="color:#94a3b8; font-size:0.88rem;">
+              ✍️ បង្កើត និងរៀបរៀងដោយ៖ <strong style="color:#38bdf8;">ចាន់ សុខហេង</strong>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg">
+              ចូលទៅកាន់កម្មវិធីសិក្សា ➜
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <!-- VIEW 2: HOME SCREEN -->
+    <section id="view-home" class="view-screen">
+      <div class="screen-author-bar">
+        <span>ទំព័រដើម • មាតិកាសិក្សា</span>
+        <span>✍️ រៀបរៀងដោយ <span class="author-name">ចាន់ សុខហេង</span></span>
+      </div>
+
       <div class="card hero-card">
         <div class="hero-meta">
-          <div class="meta-tag">👨‍🎓 សួស្តី! <strong id="heroName" style="color:#67e8f9;">សិស្សានុសិស្ស</strong></div>
+          <div class="meta-tag">👨🎓 សួស្តី! <strong id="heroName" style="color:#67e8f9;">សិស្សានុសិស្ស</strong></div>
           <div class="meta-tag">🏫 ថ្នាក់៖ <strong id="heroGrade">ទី១០</strong></div>
           <div class="meta-tag">🎯 កម្រិតដោះសោរ៖ <strong id="heroUnlocked" style="color:#4ade80;">1 / 6</strong></div>
         </div>
@@ -761,10 +1006,11 @@
         <div style="display:flex; gap:12px; flex-wrap:wrap;">
           <button class="btn btn-primary btn-lg" onclick="startAutoPractice()">▶ ចាប់ផ្តើមហាត់</button>
           <button class="btn btn-outline" onclick="navTo('lesson')">📚 មើលមេរៀនសង្ខេប</button>
+          <button class="btn btn-secondary" onclick="navTo('student-info')">👤 កែប្រែព័ត៌មានសិស្ស</button>
         </div>
       </div>
 
-      <!-- Navigation Grid (Section 3) -->
+      <!-- Navigation Grid -->
       <div class="menu-grid">
         <div class="menu-card" onclick="navTo('lesson')">
           <div class="menu-card-icon" style="background:rgba(59,130,246,0.15); color:#60a5fa;">📖</div>
@@ -796,9 +1042,9 @@
           <div class="menu-card-icon" style="background:rgba(239,68,68,0.15); color:#f87171;">📝</div>
           <div>
             <h3 style="color:#fff; margin-bottom:4px;">ប្រឡងវាស់សមត្ថភាព</h3>
-            <p style="color:var(--text-muted); font-size:0.85rem;">តេស្ត ២០ សំណួរ ចម្រុះគ្រប់កម្រិត កំណត់ម៉ោង ២៥ នាទី។</p>
+            <p style="color:var(--text-muted); font-size:0.85rem;">តេស្ត ១០ សំណួរ ចម្រុះគ្រប់កម្រិត កំណត់ម៉ោង ២៥ នាទី។</p>
           </div>
-          <span class="menu-card-badge">20 សំណួរ</span>
+          <span class="menu-card-badge">10 សំណួរ</span>
         </div>
 
         <div class="menu-card" onclick="navTo('mistakes')">
@@ -819,18 +1065,23 @@
           <span class="menu-card-badge" id="badgeAchieve">0 / 8</span>
         </div>
       </div>
-    </main>
+    </section>
 
-    <!-- VIEW 2: LESSON & FORMULAS (Sections 4 & 5) -->
+    <!-- VIEW 3: LESSON & FORMULAS -->
     <section id="view-lesson" class="view-screen">
+      <div class="screen-author-bar">
+        <span>📖 មេរៀនប្រមាណវិធីចែកពហុធា</span>
+        <span>✍️ រៀបរៀងដោយ <span class="author-name">ចាន់ សុខហេង</span></span>
+      </div>
+
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
-        <h2 style="font-size:1.4rem; color:#fff;">📖 មេរៀនប្រមាណវិធីចែកពហុធា</h2>
+        <h2 style="font-size:1.4rem; color:#fff;">📖 មេរៀន និងរូបមន្តសំខាន់ៗ</h2>
         <button class="btn btn-secondary btn-sm" onclick="navTo('home')">← ត្រឡប់ក្រោយ</button>
       </div>
 
-      <!-- 4.1 Key Terms Cards -->
+      <!-- Key Terms Cards -->
       <div class="card">
-        <h3 style="color:#60a5fa; margin-bottom:8px;">4.1 ពាក្យគន្លឹះសំខាន់ៗ (Key Terminology)</h3>
+        <h3 style="color:#60a5fa; margin-bottom:8px;">1. ពាក្យគន្លឹះសំខាន់ៗ (Key Terminology)</h3>
         <p style="color:var(--text-muted); font-size:0.95rem;">ធាតុផ្សំទាំង ៤ នៃប្រមាណវិធីចែកពហុធា៖</p>
 
         <div class="terms-grid">
@@ -857,9 +1108,9 @@
         </div>
       </div>
 
-      <!-- 5. Formula Card -->
+      <!-- Formula Card -->
       <div class="card">
-        <h3 style="color:#38bdf8; margin-bottom:8px;">5. រូបមន្តចម្បង (Division Formula)</h3>
+        <h3 style="color:#38bdf8; margin-bottom:8px;">2. រូបមន្តចម្បង (Division Formula)</h3>
         <div style="background:var(--bg-inner); border:2px solid #6366f1; border-radius:var(--radius-md); padding:24px; text-align:center; margin:16px 0;">
           <div class="math" style="font-size:1.6rem; color:#fff; font-weight:700;">
             <span style="color:var(--c-dividend)">P(x)</span> = <span style="color:var(--c-divisor)">D(x)</span><span style="color:var(--c-quotient)">Q(x)</span> + <span style="color:var(--c-remainder)">R(x)</span>
@@ -877,7 +1128,7 @@
 
       <!-- Missing Term Alert -->
       <div class="card" style="border-left:4px solid #f43f5e;">
-        <h3 style="color:#fb7185; margin-bottom:6px;">ចំណុចប្រុងប្រយ័ត្ន៖ Term ដែលបាត់ (Missing Term)</h3>
+        <h3 style="color:#fb7185; margin-bottom:6px;">3. ចំណុចប្រុងប្រយ័ត្ន៖ Term ដែលបាត់ (Missing Term)</h3>
         <p style="color:#cbd5e1; font-size:0.95rem;">
           បើពហុធាភាគលាភខ្វះដឺក្រេ (ឧ. <span class="math">x³ + 5x − 2</span> ខ្វះដឺក្រេទី ២) យើងត្រូវតែបំពេញបន្ថែមមេគុណ <strong>0</strong> មុនចាប់ផ្តើម Long Division៖<br>
           <span class="math" style="display:inline-block; margin-top:8px; color:#4ade80; font-weight:700; background:#0a1120; padding:4px 10px; border-radius:4px;">
@@ -887,8 +1138,13 @@
       </div>
     </section>
 
-    <!-- VIEW 3: LEVELS SCREEN (Section 6) -->
+    <!-- VIEW 4: LEVELS SCREEN -->
     <section id="view-levels" class="view-screen">
+      <div class="screen-author-bar">
+        <span>🎯 កម្រិតលំហាត់អនុវត្ត</span>
+        <span>✍️ រៀបរៀងដោយ <span class="author-name">ចាន់ សុខហេង</span></span>
+      </div>
+
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
         <div>
           <h2 style="font-size:1.4rem; color:#fff;">🎯 ជ្រើសរើសកម្រិត (Levels 1 - 6)</h2>
@@ -899,8 +1155,13 @@
       <div class="levels-grid" id="levelsGrid"></div>
     </section>
 
-    <!-- VIEW 4: QUIZ / PRACTICE SCREEN (Section 25 UI) -->
+    <!-- VIEW 5: QUIZ / PRACTICE SCREEN -->
     <section id="view-quiz" class="view-screen">
+      <div class="screen-author-bar">
+        <span>✍️ ប្រឡង/ហាត់លំហាត់ • រៀបរៀងដោយ <span class="author-name">ចាន់ សុខហេង</span></span>
+        <span id="quizStudentLabel" style="color:#67e8f9; font-weight:600;">សិស្ស៖ ...</span>
+      </div>
+
       <div class="quiz-bar">
         <div>
           <span class="lvl-badge lvl-1" id="qBadge">LEVEL 1</span>
@@ -920,7 +1181,7 @@
       <div class="question-box">
         <span class="q-type-badge" id="qTypeBadge">Type A: Multiple Choice</span>
         
-        <!-- Long Division Bracket Layout (Section 25) -->
+        <!-- Long Division Bracket Layout -->
         <div class="screen-25-box" id="longDivSectionBox" style="display:none;">
           <div class="screen-25-meta">
             <div>Dividend: <strong id="s25Dividend" style="color:var(--c-dividend);">x³ + 2x² − 5x + 3</strong></div>
@@ -938,7 +1199,7 @@
           <!-- Options Grid -->
           <div class="opt-grid" id="mcGrid"></div>
 
-          <!-- Arrange Steps Area (Type E) -->
+          <!-- Arrange Steps Area -->
           <div id="arrangeArea" style="display:none;">
             <p style="color:#94a3b8; font-size:0.9rem; margin-bottom:12px;">ចុចប៊ូតុង ⬆ / ⬇ ដើម្បីរៀបលំដាប់លំដោយនៃជំហានឱ្យបានត្រឹមត្រូវ៖</p>
             <div class="arrange-list" id="arrangeList"></div>
@@ -991,82 +1252,141 @@
       </div>
     </section>
 
-    <!-- VIEW 5: RESULTS SCREEN -->
+    <!-- VIEW 6: FINAL RESULTS SCREEN (ផ្ទាំងចុងបញ្ចប់ បង្ហាញលទ្ធផលតេស្តសិស្ស និងទាញយករូបភាព) -->
     <section id="view-result" class="view-screen">
-      <div class="card" style="text-align:center; padding:36px 20px;">
-        <h2 style="font-size:1.6rem; color:#fff;" id="resTitle">🎉 លទ្ធផលនៃការអនុវត្ត</h2>
-        <p style="color:var(--text-muted); font-size:0.95rem; margin-bottom:20px;" id="resSub">អ្នកបានបញ្ចប់សំណួរទាំងអស់ដោយជោគជ័យ!</p>
+      <div class="screen-author-bar">
+        <span>🏆 ផ្ទាំងបញ្ចប់ • ប័ណ្ណលទ្ធផលតេស្តផ្លូវការ</span>
+        <span>✍️ រៀបរៀងដោយ <span class="author-name">ចាន់ សុខហេង</span></span>
+      </div>
 
-        <div class="score-ring" id="resRing">
-          <div class="score-ring-inner">
-            <div style="font-size:2.2rem; font-weight:800; color:#fff; line-height:1;" id="resScore">85</div>
-            <div style="font-size:0.8rem; color:var(--text-muted);">% ពិន្ទុ</div>
+      <div class="result-certificate">
+        <div class="cert-watermark">🧮</div>
+        <div style="text-align:center; border-bottom:1px solid rgba(255,255,255,0.12); padding-bottom:16px; margin-bottom:20px;">
+          <h2 style="font-size:1.6rem; color:#fff;" id="resTitle">🎉 ប័ណ្ណបញ្ជាក់លទ្ធផលតេស្តសិស្ស</h2>
+          <p style="color:#38bdf8; font-size:0.95rem; margin-top:4px;">កម្មវិធីសិក្សា និងហ្វឹកហាត់ប្រមាណវិធីចែកពហុធា (Polynomial Division Master)</p>
+        </div>
+
+        <!-- Student Information Display Panel -->
+        <div class="cert-student-grid">
+          <div class="cert-field">
+            <span class="cert-field-lbl">👤 ឈ្មោះសិស្ស</span>
+            <span class="cert-field-val" id="resCertName">សុខ វិសាល</span>
+          </div>
+          <div class="cert-field">
+            <span class="cert-field-lbl">⚧ ភេទ</span>
+            <span class="cert-field-val" id="resCertGender">ប្រុស</span>
+          </div>
+          <div class="cert-field">
+            <span class="cert-field-lbl">🏫 ថ្នាក់រៀន</span>
+            <span class="cert-field-val" id="resCertGrade">ទី១០ ក</span>
+          </div>
+          <div class="cert-field">
+            <span class="cert-field-lbl">🔢 លេខរៀងសិស្ស</span>
+            <span class="cert-field-val" id="resCertId">12</span>
+          </div>
+          <div class="cert-field">
+            <span class="cert-field-lbl">🏛️ សាលារៀន</span>
+            <span class="cert-field-val" id="resCertSchool">វិទ្យាល័យ</span>
+          </div>
+          <div class="cert-field">
+            <span class="cert-field-lbl">📅 កាលបរិច្ឆេទ</span>
+            <span class="cert-field-val" id="resCertDate">2026-09-30</span>
           </div>
         </div>
 
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:12px; margin:24px 0;">
-          <div class="card" style="padding:14px; background:var(--bg-inner);">
+        <!-- Score Ring & Grade -->
+        <div style="display:flex; justify-content:center; align-items:center; flex-direction:column; margin:20px 0;">
+          <div class="score-ring" id="resRing">
+            <div class="score-ring-inner">
+              <div style="font-size:2.2rem; font-weight:800; color:#fff; line-height:1;" id="resScore">85</div>
+              <div style="font-size:0.8rem; color:var(--text-muted);">% ពិន្ទុ</div>
+            </div>
+          </div>
+          <div style="font-size:1.2rem; font-weight:700; color:#fbbf24; margin-top:6px;" id="resGradeLetter">និទ្ទេស A (ល្អប្រសើរ)</div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(130px, 1fr)); gap:12px; margin:20px 0;">
+          <div class="card" style="padding:14px; background:var(--bg-inner); text-align:center; margin-bottom:0;">
             <div style="font-size:1.3rem; font-weight:700; color:#34d399;" id="resCorrect">0</div>
             <div style="font-size:0.8rem; color:var(--text-muted);">✅ ឆ្លើយត្រូវ</div>
           </div>
-          <div class="card" style="padding:14px; background:var(--bg-inner);">
+          <div class="card" style="padding:14px; background:var(--bg-inner); text-align:center; margin-bottom:0;">
             <div style="font-size:1.3rem; font-weight:700; color:#f87171;" id="resWrong">0</div>
             <div style="font-size:0.8rem; color:var(--text-muted);">❌ ឆ្លើយខុស</div>
           </div>
-          <div class="card" style="padding:14px; background:var(--bg-inner);">
+          <div class="card" style="padding:14px; background:var(--bg-inner); text-align:center; margin-bottom:0;">
             <div style="font-size:1.3rem; font-weight:700; color:#fbbf24;" id="resXP">+0</div>
             <div style="font-size:0.8rem; color:var(--text-muted);">⭐ XP ទទួលបាន</div>
           </div>
-          <div class="card" style="padding:14px; background:var(--bg-inner);">
+          <div class="card" style="padding:14px; background:var(--bg-inner); text-align:center; margin-bottom:0;">
             <div style="font-size:1.3rem; font-weight:700; color:#fb923c;" id="resStreak">0</div>
             <div style="font-size:0.8rem; color:var(--text-muted);">🔥 Best Streak</div>
           </div>
         </div>
 
-        <!-- Skills Breakdown (Section 22) -->
-        <div class="card" style="text-align:left; background:var(--bg-inner);">
-          <h4 style="color:#fff; margin-bottom:14px;">📊 ការវិភាគជំនាញរបស់អ្នក (Skills Breakdown)</h4>
-          <div style="margin-bottom:12px;">
+        <!-- Skills Breakdown -->
+        <div class="card" style="text-align:left; background:var(--bg-inner); margin-bottom:18px;">
+          <h4 style="color:#fff; margin-bottom:14px;">📊 ការវិភាគជំនាញ (Skills Breakdown)</h4>
+          <div style="margin-bottom:10px;">
             <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:4px;">
               <span>Monomial Division (កម្រិត ១-២)</span> <strong id="skMono">90%</strong>
             </div>
             <div class="p-bar"><div class="p-bar-fill" id="barMono" style="width:90%;"></div></div>
           </div>
-          <div style="margin-bottom:12px;">
+          <div style="margin-bottom:10px;">
             <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:4px;">
               <span>Long Division (កម្រិត ៣)</span> <strong id="skLong">75%</strong>
             </div>
             <div class="p-bar"><div class="p-bar-fill" id="barLong" style="width:75%;"></div></div>
           </div>
-          <div style="margin-bottom:12px;">
+          <div style="margin-bottom:10px;">
             <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:4px;">
               <span>Remainder & Missing Terms (កម្រិត ៤)</span> <strong id="skRem">60%</strong>
             </div>
             <div class="p-bar"><div class="p-bar-fill" id="barRem" style="width:60%;"></div></div>
           </div>
-          <div style="margin-bottom:12px;">
+          <div style="margin-bottom:10px;">
             <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:4px;">
               <span>Error Analysis & Unknown (កម្រិត ៥-៦)</span> <strong id="skErr">50%</strong>
             </div>
             <div class="p-bar"><div class="p-bar-fill" id="barErr" style="width:50%;"></div></div>
           </div>
-          <div style="background:rgba(99,102,241,0.15); border:1px solid #6366f1; border-radius:var(--radius-sm); padding:12px; margin-top:16px;">
+          <div style="background:rgba(99,102,241,0.15); border:1px solid #6366f1; border-radius:var(--radius-sm); padding:12px; margin-top:14px;">
             <strong style="color:#818cf8;">💡 ការណែនាំបន្ថែម៖ </strong>
             <span style="color:#cbd5e1; font-size:0.9rem;" id="resAdvice">អ្នកគួរហាត់បន្ថែមលើ Missing Terms និង Error Analysis។</span>
           </div>
         </div>
 
-        <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:20px;">
-          <button class="btn btn-secondary" onclick="retryQuiz()">🔄 ហាត់ម្តងទៀត</button>
-          <button class="btn btn-outline" onclick="navTo('mistakes')">📕 មើលកំហុស</button>
-          <button class="btn btn-primary" id="btnNextLvl" onclick="nextLvlAction()">➡️ កម្រិតបន្ទាប់</button>
-          <button class="btn btn-secondary" onclick="navTo('home')">🏠 ទំព័រដើម</button>
+        <!-- Instructor Attribution & Seal -->
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border-top:1px dashed rgba(255,255,255,0.15); padding-top:16px;">
+          <div>
+            <div style="font-size:0.85rem; color:#94a3b8;">គ្រូបង្រៀន / អ្នករៀបរៀង៖</div>
+            <div style="font-size:1.15rem; font-weight:700; color:#38bdf8;">ចាន់ សុខហេង</div>
+          </div>
+          <div class="cert-author-badge">
+            🏅 វិញ្ញាបនបត្របញ្ជាក់លទ្ធផលសិក្សា
+          </div>
         </div>
+      </div>
+
+      <!-- Action Buttons including Image Download -->
+      <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:20px;">
+        <button class="btn btn-download" onclick="downloadResultImage()">
+          📥 ទាញយករូបភាពលទ្ធផល (Download Image)
+        </button>
+        <button class="btn btn-secondary" onclick="retryQuiz()">🔄 ហាត់ម្តងទៀត</button>
+        <button class="btn btn-outline" onclick="navTo('mistakes')">📕 មើលកំហុស</button>
+        <button class="btn btn-primary" id="btnNextLvl" onclick="nextLvlAction()">➡️ កម្រិតបន្ទាប់</button>
+        <button class="btn btn-secondary" onclick="navTo('home')">🏠 ទំព័រដើម</button>
       </div>
     </section>
 
-    <!-- VIEW 6: MY MISTAKES SCREEN (Section 18) -->
+    <!-- VIEW 7: MY MISTAKES SCREEN -->
     <section id="view-mistakes" class="view-screen">
+      <div class="screen-author-bar">
+        <span>📕 កំហុសរបស់ខ្ញុំ • រៀបរៀងដោយ <span class="author-name">ចាន់ សុខហេង</span></span>
+      </div>
+
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:10px;">
         <div>
           <h2 style="font-size:1.4rem; color:#fff;">📕 កំហុសរបស់ខ្ញុំ (My Mistakes)</h2>
@@ -1081,8 +1401,12 @@
       <div id="mistakesList"></div>
     </section>
 
-    <!-- VIEW 7: ACHIEVEMENTS SCREEN (Section 17) -->
+    <!-- VIEW 8: ACHIEVEMENTS SCREEN -->
     <section id="view-achievements" class="view-screen">
+      <div class="screen-author-bar">
+        <span>🏆 សមិទ្ធផល & មេដាយកិត្តិយស • រៀបរៀងដោយ <span class="author-name">ចាន់ សុខហេង</span></span>
+      </div>
+
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
         <div>
           <h2 style="font-size:1.4rem; color:#fff;">🏆 សមិទ្ធផល & មេដាយកិត្តិយស</h2>
@@ -1095,37 +1419,15 @@
 
   </div>
 
-  <!-- MODAL: PROFILE -->
-  <div class="modal-overlay" id="modalProf">
-    <div class="modal-box">
-      <div class="modal-hdr">
-        <h3 style="color:#fff;">👨‍🎓 ព័ត៌មានសិស្ស (Student Profile)</h3>
-        <button class="modal-close" onclick="closeProfile()">×</button>
-      </div>
-      <div style="margin-bottom:14px;">
-        <label style="display:block; font-size:0.9rem; color:#cbd5e1; margin-bottom:6px;">ឈ្មោះសិស្ស</label>
-        <input type="text" class="math-input" style="text-align:left; font-size:1rem; padding:10px 14px;" id="inpName">
-      </div>
-      <div style="margin-bottom:14px;">
-        <label style="display:block; font-size:0.9rem; color:#cbd5e1; margin-bottom:6px;">ថ្នាក់រៀន</label>
-        <input type="text" class="math-input" style="text-align:left; font-size:1rem; padding:10px 14px;" id="inpGrade">
-      </div>
-      <div style="margin-bottom:14px;">
-        <label style="display:block; font-size:0.9rem; color:#cbd5e1; margin-bottom:6px;">លេខរៀងសិស្ស</label>
-        <input type="text" class="math-input" style="text-align:left; font-size:1rem; padding:10px 14px;" id="inpId">
-      </div>
-      <div style="margin-bottom:20px;">
-        <label style="display:block; font-size:0.9rem; color:#cbd5e1; margin-bottom:6px;">កាលបរិច្ឆេទ</label>
-        <input type="date" class="math-input" style="text-align:left; font-size:1rem; padding:10px 14px;" id="inpDate">
-      </div>
-      <div style="display:flex; justify-content:flex-end; gap:10px;">
-        <button class="btn btn-secondary" onclick="closeProfile()">បោះបង់</button>
-        <button class="btn btn-primary" onclick="saveProfile()">រក្សាទុក ✓</button>
-      </div>
+  <!-- Global Footer (រៀបរៀង និងអភិវឌ្ឍដោយ ចាន់ សុខហេង) -->
+  <footer class="app-footer">
+    <div class="footer-content">
+      <p>🧮 <strong>POLYNOMIAL DIVISION MASTER</strong> — កម្មវិធីជំនួយស្មារតី និងពង្រឹងសមត្ថភាពប្រមាណវិធីចែកពហុធា</p>
+      <p class="footer-author">✍️ រៀបរៀង និងអភិវឌ្ឍដោយ៖ <strong>ចាន់ សុខហេង</strong></p>
     </div>
-  </div>
+  </footer>
 
-  <!-- MODAL: HINT (Section 10) -->
+  <!-- MODAL: HINT -->
   <div class="modal-overlay" id="modalHint">
     <div class="modal-box">
       <div class="modal-hdr">
@@ -1140,7 +1442,7 @@
     </div>
   </div>
 
-  <!-- MODAL: SOLUTION (Section 11) -->
+  <!-- MODAL: SOLUTION -->
   <div class="modal-overlay" id="modalSol">
     <div class="modal-box" style="max-width:700px;">
       <div class="modal-hdr">
@@ -1163,11 +1465,19 @@
   <script>
     /* ==========================================================================
        POLYNOMIAL DIVISION MASTER - ENGINE SCRIPT
+       រៀបរៀងដោយ ចាន់ សុខហេង
        ========================================================================== */
 
-    const STATE_KEY = 'POLY_DIVISION_FLOW_APP';
+    const STATE_KEY = 'POLY_DIVISION_FLOW_APP_V2';
     let state = {
-      profile: { name: 'សិស្សានុសិស្ស', grade: 'ទី១០', id: '01', date: new Date().toISOString().split('T')[0] },
+      profile: {
+        name: '',
+        gender: 'ប្រុស',
+        grade: 'ទី១០',
+        id: '01',
+        school: '',
+        date: new Date().toISOString().split('T')[0]
+      },
       stats: { xp: 350, streak: 5, bestStreak: 5, totalQ: 0, totalCorrect: 0 },
       levels: {
         1: { unlocked: true, stars: 3, highscore: 100 },
@@ -1188,14 +1498,27 @@
         { id: 'streak_5', name: '🔥 5 Correct in a Row', desc: 'ឆ្លើយត្រូវ ៥ សំណួរជាប់គ្នា', icon: '🔥', unlocked: true },
         { id: 'exam_scholar', name: '🎓 បេក្ខជនឆ្នើម', desc: 'ប្រឡងជាប់ Exam Mode បានពិន្ទុ ≥85%', icon: '🎓', unlocked: false }
       ],
-      sound: true
+      sound: true,
+      lastResult: null
     };
 
     function loadSavedState() {
       const s = localStorage.getItem(STATE_KEY);
       if (s) {
-        try { state = { ...state, ...JSON.parse(s) }; } catch (e) {}
+        try { 
+          const loaded = JSON.parse(s);
+          state = { ...state, ...loaded, profile: { ...state.profile, ...(loaded.profile || {}) } }; 
+        } catch (e) {}
       }
+
+      // Populate Enrollment Form
+      document.getElementById('initName').value = state.profile.name || '';
+      document.getElementById('initGender').value = state.profile.gender || 'ប្រុស';
+      document.getElementById('initGrade').value = state.profile.grade || 'ទី១០';
+      document.getElementById('initId').value = state.profile.id || '';
+      document.getElementById('initSchool').value = state.profile.school || '';
+      document.getElementById('initDate').value = state.profile.date || new Date().toISOString().split('T')[0];
+
       renderHeaderStats();
     }
 
@@ -1210,6 +1533,11 @@
       document.getElementById('heroName').innerText = state.profile.name || 'សិស្សានុសិស្ស';
       document.getElementById('heroGrade').innerText = state.profile.grade || 'ទី១០';
       
+      const quizStudent = document.getElementById('quizStudentLabel');
+      if (quizStudent) {
+        quizStudent.innerText = `សិស្ស៖ ${state.profile.name || 'សិស្សានុសិស្ស'} (${state.profile.grade || 'ទី១០'})`;
+      }
+
       let unCount = 0;
       for (let i = 1; i <= 6; i++) {
         if (state.levels[i] && state.levels[i].unlocked) unCount++;
@@ -1221,7 +1549,36 @@
       document.getElementById('audioToggle').innerText = state.sound ? '🔊' : '🔇';
     }
 
-    // Audio Engine (Web Audio API)
+    // First Screen Action: Save Profile & Go to Home
+    function saveStudentProfileAndProceed() {
+      const name = document.getElementById('initName').value.trim();
+      const grade = document.getElementById('initGrade').value.trim();
+      const id = document.getElementById('initId').value.trim();
+      const gender = document.getElementById('initGender').value;
+      const school = document.getElementById('initSchool').value.trim();
+      const date = document.getElementById('initDate').value;
+
+      if (!name) {
+        alert('សូមបញ្ចូលឈ្មោះរបស់ប្អូនជាមុនសិន!');
+        return;
+      }
+
+      state.profile = {
+        name,
+        gender: gender || 'ប្រុស',
+        grade: grade || 'ទី១០',
+        id: id || '01',
+        school: school || 'វិទ្យាល័យ',
+        date: date || new Date().toISOString().split('T')[0]
+      };
+
+      saveState();
+      playAudio('fanfare');
+      launchConfetti();
+      navTo('home');
+    }
+
+    // Audio Engine
     let aCtx = null;
     function playAudio(t) {
       if (!state.sound) return;
@@ -1266,6 +1623,7 @@
         }
       } catch (e) {}
     }
+
     function toggleAudio() {
       state.sound = !state.sound;
       saveState();
@@ -1313,13 +1671,16 @@
     function navTo(scrId) {
       document.querySelectorAll('.view-screen').forEach(s => s.classList.remove('active'));
       const el = document.getElementById('view-' + scrId);
-      if (el) { el.classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+      if (el) { 
+        el.classList.add('active'); 
+        window.scrollTo({ top: 0, behavior: 'smooth' }); 
+      }
       if (scrId === 'levels') renderLevelsView();
       if (scrId === 'mistakes') renderMistakesView();
       if (scrId === 'achievements') renderAchievementsView();
     }
 
-    // LEVEL DEFINITIONS (Section 6)
+    // LEVEL DEFINITIONS
     const LEVEL_DATA = [
       { id: 1, title: '🟢 LEVEL 1 — Very Easy', km: 'ចែកពហុធានឹង Monomial', desc: 'រំលឹកច្បាប់ស្វ័យគុណ (axᵐ)/(bxⁿ) = (a/b)xᵐ⁻ⁿ', sample: '(6x³ + 9x²) ÷ 3x = 2x² + 3x', req: 70, cls: 'lvl-1' },
       { id: 2, title: '🟢 LEVEL 2 — Easy', km: 'ចែកពហុធាដែលមាន Term ច្រើន', desc: 'សិស្សត្រូវចែករាល់ Term នីមួយៗនៃភាគលាភ', sample: '(12x⁴ − 8x³ + 4x²) ÷ 4x²', req: 70, cls: 'lvl-2' },
@@ -1329,7 +1690,7 @@
       { id: 6, title: '🟣 LEVEL 6 — Expert', km: 'Master, Reverse Problem & Reasoning', desc: 'រកមេគុណ a (Remainder Theorem) និង P = D·Q + R', sample: 'P(x) = x³ + ax² + 5x + 6', req: 85, cls: 'lvl-6' }
     ];
 
-    // QUESTION BANK (Section 23 Database)
+    // QUESTION BANK
     const QUESTIONS_DB = [
       // Level 1
       {
@@ -1378,7 +1739,7 @@
         explanation: ['12x⁴/4x² − 8x³/4x² + 4x²/4x² = 3x² − 2x + 1'],
         verification: '4x² · (3x² − 2x + 1) = 12x⁴ − 8x³ + 4x²'
       },
-      // Level 3 (Long Division Step-by-Step & Arrange)
+      // Level 3
       {
         id: 301, level: 3, type: 'long-division', topic: 'long-div',
         prompt: 'តើ Term ដំបូងនៃផលចែក (First Term of Quotient) ក្នុងការចែក (x² + 5x + 6) ÷ (x + 2) គឺអ្វី?',
@@ -1412,7 +1773,7 @@
         explanation: ['លំដាប់ត្រឹមត្រូវ៖ 1. Divide → 2. Multiply → 3. Subtract → 4. Bring Down'],
         verification: '1. Divide → 2. Multiply → 3. Subtract → 4. Bring Down'
       },
-      // Level 4 (Remainder & Missing Term)
+      // Level 4
       {
         id: 401, level: 4, type: 'long-division', topic: 'remainder',
         prompt: 'រកផលចែក Q(x) និងសំណល់ R នៃ (x³ + 2x² − 5x + 3) ÷ (x − 2)៖',
@@ -1449,7 +1810,7 @@
         explanation: ['ដឺក្រេដែលបាត់គឺ x² ដូច្នេះត្រូវបំពេញបន្ថែម 0x²'],
         verification: 'x³ + 0x² + 5x − 2 = x³ + 5x − 2'
       },
-      // Level 5 (High Degree & Error Analysis)
+      // Level 5
       {
         id: 501, level: 5, type: 'mc', topic: 'error',
         prompt: 'រកកំហុសក្នុងដំណោះស្រាយចែកជួរឈររបស់សិស្សខាងក្រោម (Error Analysis)៖',
@@ -1472,7 +1833,7 @@
         explanation: ['សិស្សខុសត្រង់ការគុណ៖ 3(x + 2) = 3x + 6 ប៉ុន្តែសិស្សសរសេរ 3x + 4។'],
         verification: '3(x + 2) = 3x + 6'
       },
-      // Level 6 (Find unknown & Reverse Problem)
+      // Level 6
       {
         id: 601, level: 6, type: 'mc', topic: 'reasoning',
         prompt: 'រកតម្លៃនៃចំនួនថេរ a បើគេដឹងថា P(x) = x³ + ax² + 5x + 6 ចែកដាច់នឹង (x + 1)៖',
@@ -1494,7 +1855,7 @@
       }
     ];
 
-    // Dynamic Random Generator (Section 24)
+    // Dynamic Random Generator
     function generateDynamicQuestion(lvl) {
       if (lvl === 1) {
         const a = (Math.floor(Math.random() * 4) + 2) * 3;
@@ -1551,6 +1912,7 @@
     let quiz = {
       mode: 'level',
       level: 1,
+      modeTitle: 'LEVEL 1',
       questions: [],
       curIdx: 0,
       userAns: null,
@@ -1576,13 +1938,12 @@
     function startQuiz(lvlId) {
       clearInterval(quiz.timerInt);
       let list = QUESTIONS_DB.filter(q => q.level === lvlId);
-      // add dynamic question if needed
       const dyn = generateDynamicQuestion(lvlId);
       if (dyn) list.push(dyn);
 
       shuffle(list);
       quiz = {
-        mode: 'level', level: lvlId, questions: list, curIdx: 0,
+        mode: 'level', level: lvlId, modeTitle: `Level ${lvlId}`, questions: list, curIdx: 0,
         userAns: null, arrangeOrder: [], score: 0, correct: 0, wrong: 0,
         xp: 0, hintLvl: 0, timerSec: 0, timerInt: null,
         skills: { monomial: { c: 0, t: 0 }, 'long-div': { c: 0, t: 0 }, remainder: { c: 0, t: 0 }, missing: { c: 0, t: 0 }, error: { c: 0, t: 0 }, reasoning: { c: 0, t: 0 } }
@@ -1601,7 +1962,7 @@
       let pool = [...QUESTIONS_DB];
       shuffle(pool);
       quiz = {
-        mode: 'challenge', level: 3, questions: pool, curIdx: 0,
+        mode: 'challenge', level: 3, modeTitle: 'Challenge 60s', questions: pool, curIdx: 0,
         userAns: null, arrangeOrder: [], score: 0, correct: 0, wrong: 0,
         xp: 0, hintLvl: 0, timerSec: 60, timerInt: null,
         skills: { monomial: { c: 0, t: 0 }, 'long-div': { c: 0, t: 0 }, remainder: { c: 0, t: 0 }, missing: { c: 0, t: 0 }, error: { c: 0, t: 0 }, reasoning: { c: 0, t: 0 } }
@@ -1631,7 +1992,7 @@
       let examPool = [...QUESTIONS_DB];
       shuffle(examPool);
       quiz = {
-        mode: 'exam', level: 6, questions: examPool.slice(0, 10), curIdx: 0,
+        mode: 'exam', level: 6, modeTitle: 'Exam Mode', questions: examPool.slice(0, 10), curIdx: 0,
         userAns: null, arrangeOrder: [], score: 0, correct: 0, wrong: 0,
         xp: 0, hintLvl: 0, timerSec: 25 * 60, timerInt: null,
         skills: { monomial: { c: 0, t: 0 }, 'long-div': { c: 0, t: 0 }, remainder: { c: 0, t: 0 }, missing: { c: 0, t: 0 }, error: { c: 0, t: 0 }, reasoning: { c: 0, t: 0 } }
@@ -1666,7 +2027,7 @@
       let list = [...state.mistakes];
       shuffle(list);
       quiz = {
-        mode: 'mistakes', level: 3, questions: list, curIdx: 0,
+        mode: 'mistakes', level: 3, modeTitle: 'My Mistakes Review', questions: list, curIdx: 0,
         userAns: null, arrangeOrder: [], score: 0, correct: 0, wrong: 0,
         xp: 0, hintLvl: 0, timerSec: 0, timerInt: null,
         skills: { monomial: { c: 0, t: 0 }, 'long-div': { c: 0, t: 0 }, remainder: { c: 0, t: 0 }, missing: { c: 0, t: 0 }, error: { c: 0, t: 0 }, reasoning: { c: 0, t: 0 } }
@@ -1688,24 +2049,20 @@
       quiz.userAns = null;
       quiz.hintLvl = 0;
 
-      // Progress & Counters
       const pct = (quiz.curIdx / quiz.questions.length) * 100;
       document.getElementById('pBarFill').style.width = pct + '%';
       document.getElementById('qCounter').innerText = `សំណួរ ${quiz.curIdx + 1} / ${quiz.questions.length}`;
       document.getElementById('quizXPGain').innerText = quiz.xp;
       document.getElementById('quizStreak').innerText = state.stats.streak;
 
-      // Reset UI
       document.getElementById('btnSubmit').style.display = 'inline-flex';
       document.getElementById('btnNext').style.display = 'none';
       document.getElementById('fbBox').style.display = 'none';
       document.getElementById('fbBox').className = 'fb-box';
 
-      // Type Badge & Prompt
       document.getElementById('qTypeBadge').innerText = `Level ${q.level || 1} • Type: ${q.type.toUpperCase()}`;
       document.getElementById('qPrompt').innerText = q.prompt;
 
-      // Long Division Bracket (Section 25 UI layout)
       const sec25 = document.getElementById('longDivSectionBox');
       if (q.bracket) {
         sec25.style.display = 'block';
@@ -1719,7 +2076,6 @@
         document.getElementById('qMathBox').innerHTML = q.display || '';
       }
 
-      // Input Options
       const mcGrid = document.getElementById('mcGrid');
       const arrangeArea = document.getElementById('arrangeArea');
       const fillArea = document.getElementById('fillArea');
@@ -1753,7 +2109,6 @@
       }
     }
 
-    // Type E: Arrange Steps Handler
     function renderArrangeItems() {
       const list = document.getElementById('arrangeList');
       list.innerHTML = '';
@@ -1892,7 +2247,7 @@
       else finishQuiz();
     }
 
-    // Finish Quiz
+    // Finish Quiz & Show Official Result
     function finishQuiz() {
       clearInterval(quiz.timerInt);
       const total = quiz.questions.length;
@@ -1900,6 +2255,33 @@
 
       state.stats.totalQ += total;
       state.stats.totalCorrect += quiz.correct;
+
+      // Grade classification
+      let gradeLetter = 'និទ្ទេស F (ធ្លាក់)';
+      if (scorePct >= 90) gradeLetter = 'និទ្ទេស A (ល្អប្រសើរ)';
+      else if (scorePct >= 80) gradeLetter = 'និទ្ទេស B (ល្អណាស់)';
+      else if (scorePct >= 70) gradeLetter = 'និទ្ទេស C (ល្អ)';
+      else if (scorePct >= 60) gradeLetter = 'និទ្ទេស D (មធ្យម)';
+      else if (scorePct >= 50) gradeLetter = 'និទ្ទេស E (ខ្សោយ)';
+
+      // Save Last Result State for Certificate & Image Generation
+      state.lastResult = {
+        name: state.profile.name || 'សិស្សានុសិស្ស',
+        gender: state.profile.gender || 'ប្រុស',
+        grade: state.profile.grade || 'ទី១០',
+        id: state.profile.id || '01',
+        school: state.profile.school || 'វិទ្យាល័យ',
+        date: state.profile.date || new Date().toISOString().split('T')[0],
+        modeTitle: quiz.modeTitle || 'ប្រមាណវិធីចែកពហុធា',
+        scorePct,
+        gradeLetter,
+        correct: quiz.correct,
+        wrong: quiz.wrong,
+        total,
+        xp: quiz.xp,
+        streak: state.stats.bestStreak,
+        author: 'ចាន់ សុខហេង'
+      };
 
       // Unlock progression
       const lvl = quiz.level;
@@ -1923,8 +2305,16 @@
       saveState();
       checkAllAchievements();
 
-      // Render Results
+      // Render Results Screen
+      document.getElementById('resCertName').innerText = state.lastResult.name;
+      document.getElementById('resCertGender').innerText = state.lastResult.gender;
+      document.getElementById('resCertGrade').innerText = state.lastResult.grade;
+      document.getElementById('resCertId').innerText = state.lastResult.id;
+      document.getElementById('resCertSchool').innerText = state.lastResult.school;
+      document.getElementById('resCertDate').innerText = state.lastResult.date;
+
       document.getElementById('resScore').innerText = scorePct;
+      document.getElementById('resGradeLetter').innerText = gradeLetter;
       document.getElementById('resRing').style.background = `conic-gradient(var(--primary) ${scorePct}%, #1e293b ${scorePct}%)`;
       document.getElementById('resCorrect').innerText = quiz.correct;
       document.getElementById('resWrong').innerText = quiz.wrong;
@@ -1932,19 +2322,15 @@
       document.getElementById('resStreak').innerText = state.stats.bestStreak;
 
       if (scorePct >= 70) {
-        document.getElementById('resTitle').innerText = '🎉 អបអរសាទរ! លទ្ធផលល្អណាស់';
-        document.getElementById('resSub').innerText = 'អ្នកបានឆ្លងកាត់ការអនុវត្តនេះដោយជោគជ័យ!';
+        document.getElementById('resTitle').innerText = '🎉 ប័ណ្ណបញ្ជាក់លទ្ធផលតេស្តសិស្ស (ជាប់)';
         playAudio('fanfare');
         launchConfetti();
       } else {
-        document.getElementById('resTitle').innerText = '💪 ព្យាយាមម្តងទៀត!';
-        document.getElementById('resSub').innerText = 'កុំចុះចាញ់! ហាត់បន្ថែមដើម្បីទទួលបានពិន្ទុកាន់តែខ្ពស់។';
+        document.getElementById('resTitle').innerText = '💪 ប័ណ្ណបញ្ជាក់លទ្ធផលតេស្តសិស្ស (ព្យាយាមឡើងវិញ)';
       }
 
-      // Breakdown Skills (Section 22)
       renderSkillsReport();
 
-      // Next level button display
       const btnNextLvl = document.getElementById('btnNextLvl');
       if (lvl < 6 && state.levels[lvl + 1] && state.levels[lvl + 1].unlocked) {
         btnNextLvl.style.display = 'inline-flex';
@@ -1992,7 +2378,183 @@
       else navTo('home');
     }
 
-    // Hint Modal (Section 10)
+    // ==========================================
+    // DOWNLOAD RESULT AS BEAUTIFUL IMAGE (CANVAS)
+    // រៀបរៀងដោយ ចាន់ សុខហេង
+    // ==========================================
+    function downloadResultImage() {
+      const res = state.lastResult || {
+        name: state.profile.name || 'សិស្សានុសិស្ស',
+        gender: state.profile.gender || 'ប្រុស',
+        grade: state.profile.grade || 'ទី១០',
+        id: state.profile.id || '01',
+        school: state.profile.school || 'វិទ្យាល័យ',
+        date: state.profile.date || new Date().toISOString().split('T')[0],
+        modeTitle: 'ប្រមាណវិធីចែកពហុធា',
+        scorePct: 85,
+        gradeLetter: 'និទ្ទេស A (ល្អប្រសើរ)',
+        correct: 8,
+        wrong: 2,
+        total: 10,
+        xp: 120,
+        streak: 5,
+        author: 'ចាន់ សុខហេង'
+      };
+
+      const canvas = document.createElement('canvas');
+      canvas.width = 1200;
+      canvas.height = 800;
+      const ctx = canvas.getContext('2d');
+
+      // Helper: Rounded Rectangle
+      function drawRoundRect(x, y, w, h, radius, fill, stroke, strokeColor) {
+        ctx.beginPath();
+        ctx.moveTo(x + radius, y);
+        ctx.arcTo(x + w, y, x + w, y + h, radius);
+        ctx.arcTo(x + w, y + h, x, y + h, radius);
+        ctx.arcTo(x, y + h, x, y, radius);
+        ctx.arcTo(x, y + w, y, radius);
+        ctx.closePath();
+        if (fill) { ctx.fillStyle = fill; ctx.fill(); }
+        if (stroke) { ctx.lineWidth = stroke; ctx.strokeStyle = strokeColor || '#6366f1'; ctx.stroke(); }
+      }
+
+      // Background Gradient
+      const bgGrad = ctx.createRadialGradient(600, 400, 100, 600, 400, 700);
+      bgGrad.addColorStop(0, '#1a1f3c');
+      bgGrad.addColorStop(0.6, '#0c1222');
+      bgGrad.addColorStop(1, '#050811');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Outer & Inner Ornamental Borders
+      drawRoundRect(24, 24, 1152, 752, 24, null, 3, '#3b82f6');
+      drawRoundRect(34, 34, 1132, 732, 18, null, 1, 'rgba(250, 204, 21, 0.4)');
+
+      // Top Header Banner
+      const bannerGrad = ctx.createLinearGradient(40, 40, 1160, 130);
+      bannerGrad.addColorStop(0, 'rgba(99, 102, 241, 0.25)');
+      bannerGrad.addColorStop(1, 'rgba(6, 182, 212, 0.25)');
+      drawRoundRect(45, 45, 1110, 110, 16, bannerGrad, 1.5, 'rgba(99, 102, 241, 0.5)');
+
+      // Title & Heading
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#f8fafc';
+      ctx.font = 'bold 30px "Kantumruy Pro", sans-serif';
+      ctx.fillText('🏆 ប័ណ្ណបញ្ជាក់លទ្ធផលតេស្ត / CERTIFICATE OF TEST RESULT', 600, 92);
+
+      ctx.fillStyle = '#38bdf8';
+      ctx.font = '600 18px "Kantumruy Pro", sans-serif';
+      ctx.fillText('ប្រមាណវិធីចែកពហុធា • POLYNOMIAL DIVISION MASTER', 600, 126);
+
+      // Student Profile Card Box (Left side)
+      drawRoundRect(55, 175, 530, 420, 16, '#11192d', 1.5, '#233352');
+
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#60a5fa';
+      ctx.font = 'bold 20px "Kantumruy Pro", sans-serif';
+      ctx.fillText('👤 ព័ត៌មានសិស្សានុសិស្ស', 80, 215);
+
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '16px "Kantumruy Pro", sans-serif';
+      ctx.fillText('ឈ្មោះសិស្ស៖', 80, 260);
+      ctx.fillText('ភេទ៖', 80, 310);
+      ctx.fillText('ថ្នាក់រៀន៖', 80, 360);
+      ctx.fillText('លេខរៀង / ID៖', 80, 410);
+      ctx.fillText('សាលារៀន៖', 80, 460);
+      ctx.fillText('កាលបរិច្ឆេទ៖', 80, 510);
+      ctx.fillText('វិញ្ញាសាតេស្ត៖', 80, 560);
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 18px "Kantumruy Pro", sans-serif';
+      ctx.fillText(res.name || 'សិស្សានុសិស្ស', 220, 260);
+      ctx.fillText(res.gender || 'ប្រុស', 220, 310);
+      ctx.fillText(res.grade || 'ទី១០', 220, 360);
+      ctx.fillText(res.id || '01', 220, 410);
+      ctx.fillText(res.school || 'វិទ្យាល័យ', 220, 460);
+      ctx.fillText(res.date || '', 220, 510);
+      ctx.fillStyle = '#38bdf8';
+      ctx.fillText(res.modeTitle || 'ប្រមាណវិធីចែកពហុធា', 220, 560);
+
+      // Test Result Card Box (Right side)
+      drawRoundRect(615, 175, 530, 420, 16, '#11192d', 1.5, '#233352');
+
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#f59e0b';
+      ctx.font = 'bold 20px "Kantumruy Pro", sans-serif';
+      ctx.fillText('📊 លទ្ធផលការប្រឡង / តេស្ត', 640, 215);
+
+      // Circular Score Stamp
+      ctx.beginPath();
+      ctx.arc(880, 320, 75, 0, Math.PI * 2);
+      ctx.fillStyle = '#0a1120';
+      ctx.fill();
+      ctx.lineWidth = 6;
+      ctx.strokeStyle = (res.scorePct >= 70) ? '#10b981' : '#f59e0b';
+      ctx.stroke();
+
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 44px "Inter", sans-serif';
+      ctx.fillText(`${res.scorePct}%`, 880, 332);
+
+      ctx.font = '600 13px "Kantumruy Pro", sans-serif';
+      ctx.fillStyle = '#94a3b8';
+      ctx.fillText('ពិន្ទុសរុប', 880, 355);
+
+      // Grade Letter
+      ctx.font = 'bold 22px "Kantumruy Pro", sans-serif';
+      ctx.fillStyle = '#fbbf24';
+      ctx.fillText(res.gradeLetter || 'និទ្ទេស A', 880, 435);
+
+      // Metrics: Correct, Wrong, XP
+      ctx.textAlign = 'left';
+      drawRoundRect(640, 465, 480, 95, 12, '#0a1120', 1, '#1e293b');
+
+      ctx.font = '16px "Kantumruy Pro", sans-serif';
+      ctx.fillStyle = '#34d399';
+      ctx.fillText(`✅ ឆ្លើយត្រូវ៖ ${res.correct} / ${res.total}`, 665, 502);
+
+      ctx.fillStyle = '#f87171';
+      ctx.fillText(`❌ ឆ្លើយខុស៖ ${res.wrong}`, 880, 502);
+
+      ctx.fillStyle = '#fbbf24';
+      ctx.fillText(`⭐ XP៖ +${res.xp}`, 665, 538);
+
+      ctx.fillStyle = '#fb923c';
+      ctx.fillText(`🔥 Best Streak៖ ${res.streak}`, 880, 538);
+
+      // Bottom Evaluation & Author Section
+      drawRoundRect(55, 615, 1090, 130, 16, 'rgba(10, 17, 32, 0.9)', 1.5, '#6366f1');
+
+      ctx.textAlign = 'left';
+      ctx.font = '600 16px "Kantumruy Pro", sans-serif';
+      ctx.fillStyle = '#93c5fd';
+      ctx.fillText('💡 ការវាយតម្លៃ៖ សិស្សបានយល់ដឹង និងអនុវត្តប្រមាណវិធីចែកពហុធាបានយ៉ាងល្អប្រសើរ!', 80, 655);
+
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '15px "Kantumruy Pro", sans-serif';
+      ctx.fillText('ប័ណ្ណនេះត្រូវបានបង្កើត និងបញ្ជាក់ដោយស្វ័យប្រវត្តិពីប្រព័ន្ធ Polynomial Division Master', 80, 690);
+
+      // Signature & Author
+      ctx.textAlign = 'right';
+      ctx.font = '600 14px "Kantumruy Pro", sans-serif';
+      ctx.fillStyle = '#cbd5e1';
+      ctx.fillText('រៀបរៀង និងត្រួតពិនិត្យដោយ៖', 1110, 665);
+
+      ctx.font = 'bold 22px "Kantumruy Pro", sans-serif';
+      ctx.fillStyle = '#38bdf8';
+      ctx.fillText('ចាន់ សុខហេង', 1110, 702);
+
+      // Trigger Instant Download
+      const link = document.createElement('a');
+      const safeName = (res.name || 'Student').replace(/\s+/g, '_');
+      link.download = `លទ្ធផល_ប្រមាណវិធីចែកពហុធា_${safeName}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+
+    // Hint Modal
     function showHintModal() {
       const q = quiz.questions[quiz.curIdx];
       if (!q || !q.hints || q.hints.length === 0) {
@@ -2033,7 +2595,7 @@
       }
     }
 
-    // Solution Modal (Section 11)
+    // Solution Modal
     let solIdx = 0;
     let solSteps = [];
     function showSolutionModal() {
@@ -2061,27 +2623,7 @@
       document.getElementById('btnSolNext').disabled = (solIdx === solSteps.length - 1);
     }
 
-    // Student Profile Modal (Section 2)
-    function openProfile() {
-      document.getElementById('inpName').value = state.profile.name || '';
-      document.getElementById('inpGrade').value = state.profile.grade || '';
-      document.getElementById('inpId').value = state.profile.id || '';
-      document.getElementById('inpDate').value = state.profile.date || new Date().toISOString().split('T')[0];
-      document.getElementById('modalProf').classList.add('active');
-    }
-    function closeProfile() {
-      document.getElementById('modalProf').classList.remove('active');
-    }
-    function saveProfile() {
-      state.profile.name = document.getElementById('inpName').value.trim() || 'សិស្សានុសិស្ស';
-      state.profile.grade = document.getElementById('inpGrade').value.trim() || 'ទី១០';
-      state.profile.id = document.getElementById('inpId').value.trim() || '01';
-      state.profile.date = document.getElementById('inpDate').value;
-      saveState();
-      closeProfile();
-    }
-
-    // Mistakes View (Section 18)
+    // Mistakes View
     function renderMistakesView() {
       const box = document.getElementById('mistakesList');
       box.innerHTML = '';
@@ -2122,7 +2664,7 @@
       }
     }
 
-    // Achievements View (Section 17)
+    // Achievements View
     function checkAllAchievements() {
       if (state.levels[1] && state.levels[1].stars > 0) unlockAch('first_step');
       if (state.stats.streak >= 5) unlockAch('streak_5');
@@ -2184,3 +2726,4 @@
   </script>
 </body>
 </html>
+```
